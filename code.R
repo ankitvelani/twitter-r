@@ -1,5 +1,4 @@
 
-setwd("/home/tw/Desktop/Sentiment")
 
 ############### 1. Text Retrival ###############
 
@@ -19,9 +18,8 @@ token_secret <- "Qio7a95S1zgotg6AcirbumyyrHTAgezYn0o6FBex9hT77" # From dev.twitt
 # Create Twitter Connection
 setup_twitter_oauth(api_key, api_secret, token, token_secret)
 
-# Run Twitter Search. Format is searchTwitter("Search Terms", n=100, lang="en", geocode="lat,lng", also accepts since and until).
-
-tweets <- searchTwitter("Trump", n=1000,lang="en")
+# Search Twitter 
+tweets <- searchTwitter("Indian Railway", n=2500,lang="en")
 
 # Transform tweets list into a data frame
 tweets.df <- twListToDF(tweets)
@@ -77,4 +75,5 @@ score.sentiment = function(tweets, pos.words, neg.words)
 
 ## Analysis Resule ####
 analysis = score.sentiment(tweets.df$text, pos, neg)
-hist(analysis$score)
+
+hist(analysis$score,main = "Tweet Analysis",xlab = "Tweet Score")
